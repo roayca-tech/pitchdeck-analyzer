@@ -15,6 +15,7 @@ function SuccessContent() {
 
   const [simulating, setSimulating] = useState(false);
   const [done, setDone] = useState(false);
+  const [reportUrl, setReportUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (mock === 'true' && path && fileId && !simulating && !done) {
@@ -33,7 +34,10 @@ function SuccessContent() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).then(() => {
+      }).then(res => res.json()).then(data => {
+        if (data.mailUrl) {
+          setReportUrl(data.mailUrl);
+        }
         setSimulating(false);
         setDone(true);
       }).catch(err => {
@@ -44,7 +48,7 @@ function SuccessContent() {
   }, [mock, path, fileId, name, email, company, simulating, done]);
 
   return (
-    <div className="card" style={{ display: 'inline-block' }}>
+    <div className="max-w-md mx-auto p-8 bg-card text-card-foreground shadow-sm rounded-xl border border-border">
       {simulating ? (
         <div>
           <Loader2 size={64} className="spin" style={{ color: 'var(--accent-color)', margin: '0 auto 2rem' }} />
@@ -53,16 +57,24 @@ function SuccessContent() {
         </div>
       ) : (
         <div>
-          <CheckCircle size={64} style={{ color: 'var(--success-color)', margin: '0 auto 2rem' }} />
-          <h1 style={{ marginBottom: '1rem' }}>Payment Successful!</h1>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+          <CheckCircle size={64} className="text-primary mx-auto mb-6" />
+          <h1 className="text-2xl font-display mb-4">Payment Successful!</h1>
+          <p className="text-secondary-foreground mb-6">
             Your pitch deck is now being analyzed by our AI.
             <br />
             <b>We will email your detailed PDF report shortly.</b>
           </p>
-          <p>
+          <p className="text-secondary">
             Check your inbox (or Ethereal Mail console if running locally) for the result.
           </p>
+          {reportUrl && (
+            <div className="mt-8 p-4 bg-muted rounded-lg border border-border text-center">
+              <p className="font-medium text-foreground mb-2">Demo Link Ready:</p>
+              <a href={reportUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">
+                {reportUrl}
+              </a>
+            </div>
+          )}
         </div>
       )}
     </div>

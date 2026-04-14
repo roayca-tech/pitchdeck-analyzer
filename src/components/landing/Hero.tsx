@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Link from "next/link";
+
 import { ArrowRight, FileText } from "lucide-react";
 
 const verdictRows = [
@@ -25,11 +26,7 @@ const Hero = () => (
   <section className="pt-28 pb-20 md:pt-36 md:pb-28">
     <div className="container grid md:grid-cols-2 gap-12 md:gap-16 items-center">
       {/* Left */}
-      <motion.div
-        initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <div className="animate-fade-up">
         <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.08] text-charcoal mb-3">
           Get to Wow Before You Pitch
         </h1>
@@ -47,12 +44,12 @@ const Hero = () => (
         </p>
 
         <div className="flex flex-wrap items-center gap-3 mb-5">
-          <a
+          <Link
             href="/assessment"
             className="inline-flex items-center gap-2 h-11 px-6 rounded-md bg-primary text-primary-foreground font-medium text-sm hover:bg-copper transition-colors duration-200 active:scale-[0.97]"
           >
             Upload Deck & Start <ArrowRight size={16} />
-          </a>
+          </Link>
           <a
             href="#whats-inside"
             className="inline-flex items-center gap-2 h-11 px-6 rounded-md border border-border text-foreground font-medium text-sm hover:bg-mist transition-colors duration-200 active:scale-[0.97]"
@@ -64,15 +61,10 @@ const Hero = () => (
         <p className="text-xs text-muted-foreground">
           $99.95 · PDF delivery · VC-style review
         </p>
-      </motion.div>
+      </div>
 
       {/* Right — Report Preview */}
-      <motion.div
-        initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="relative"
-      >
+      <div className="relative animate-fade-up" style={{ animationDelay: '150ms' }}>
         <div className="bg-card rounded-xl shadow-xl shadow-charcoal/5 border border-border p-6 md:p-8">
           <div className="flex items-center gap-2 mb-6">
             <FileText size={18} className="text-copper" />
@@ -108,7 +100,7 @@ const Hero = () => (
             Comprehensive PDF Export
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   </section>
 );

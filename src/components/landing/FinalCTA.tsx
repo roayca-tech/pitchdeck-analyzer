@@ -2,6 +2,7 @@
 
 import { ScrollReveal } from "./ScrollReveal";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const FinalCTA = () => (
   <section className="py-20 md:py-28">
@@ -15,12 +16,12 @@ const FinalCTA = () => (
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <a
+          <Link
             href="/assessment"
-            className="inline-flex items-center gap-2 h-11 px-6 rounded-md bg-primary text-primary-foreground font-medium text-sm hover:bg-copper transition-colors duration-200 active:scale-[0.97]"
+            className="inline-flex items-center gap-2 h-12 px-8 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors duration-200"
           >
-            Upload Deck & Start <ArrowRight size={16} />
-          </a>
+            Start Your Assessment <ArrowRight size={18} />
+          </Link>
           <a
             href="#whats-inside"
             className="inline-flex items-center gap-2 h-11 px-6 rounded-md border border-border text-foreground font-medium text-sm hover:bg-mist transition-colors duration-200 active:scale-[0.97]"

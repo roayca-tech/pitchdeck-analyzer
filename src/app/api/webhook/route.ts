@@ -43,7 +43,9 @@ export async function POST(request: NextRequest) {
     // Ideally, you'd push to a queue (like SQS or Inngest) here instead of doing it inline.
     
     if (email && tempFilePath) {
-      processDeck(tempFilePath, name, company, email).catch(console.error);
+      // Await processDeck to prevent Next.js 14 killing dangling promises
+      const mailUrl = await processDeck(tempFilePath, name, company, email).catch(console.error);
+      return NextResponse.json({ received: true, mailUrl }, { status: 200 });
     } else {
       console.error("Missing metadata for session:", session.id);
     }
@@ -93,7 +95,7 @@ async function processDeck(tempFilePath: string, name: string, company: string, 
 
     // 5. Send Email
     console.log(`Sending email to ${email}...`);
-    await sendReportEmail(email, reportBuffer, company || name);
+    const mailUrl = await sendReportEmail(email, reportBuffer, company || name);
 
     // 6. Cleanup
     try {
@@ -103,6 +105,7 @@ async function processDeck(tempFilePath: string, name: string, company: string, 
     }
     
     console.log("Processing complete!");
+    return mailUrl;
 
   } catch (error) {
     console.error("Error during background deck processing:", error);

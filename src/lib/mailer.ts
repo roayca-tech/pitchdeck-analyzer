@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
 // If credentials are not set, we use ethersender ethereal or just log it to console
-export async function sendReportEmail(toEmail: string, pdfBuffer: Buffer, companyName: string): Promise<void> {
+export async function sendReportEmail(toEmail: string, pdfBuffer: Buffer, companyName: string): Promise<string | undefined> {
   const isMock = !process.env.SMTP_HOST;
 
   let transporter;
@@ -58,8 +58,11 @@ export async function sendReportEmail(toEmail: string, pdfBuffer: Buffer, compan
   const info = await transporter.sendMail(mailOptions);
   
   if (isMock) {
-    console.log("Ethereal Mail URL: " + nodemailer.getTestMessageUrl(info));
+    const url = nodemailer.getTestMessageUrl(info);
+    console.log("Ethereal Mail URL: " + url);
+    return url !== false ? url : undefined;
   } else {
     console.log("Email sent: " + info.messageId);
+    return undefined;
   }
 }

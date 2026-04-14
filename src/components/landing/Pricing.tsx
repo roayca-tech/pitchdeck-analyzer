@@ -2,6 +2,7 @@
 
 import { ScrollReveal } from "./ScrollReveal";
 import { ArrowRight, Check } from "lucide-react";
+import Link from "next/link";
 
 const included = [
   "1 startup assessment",
@@ -42,12 +43,12 @@ const Pricing = () => (
             ))}
           </ul>
 
-          <a
+          <Link
             href="/assessment"
-            className="flex items-center justify-center gap-2 w-full h-12 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:bg-copper transition-colors duration-200 active:scale-[0.97]"
+            className="w-full inline-flex items-center justify-center gap-2 h-11 px-6 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors duration-200 shadow-sm"
           >
-            Start My Assessment <ArrowRight size={16} />
-          </a>
+            Start Analysis <ArrowRight size={16} />
+          </Link>
 
           <p className="text-xs text-muted-foreground text-center mt-4">
             Payment is required before report generation.

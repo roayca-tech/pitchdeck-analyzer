@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -33,12 +34,12 @@ const Header = () => {
           ))}
         </nav>
 
-        <a
+        <Link
           href="/assessment"
           className="hidden md:inline-flex items-center justify-center h-9 px-5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-copper transition-colors duration-200 active:scale-[0.97]"
         >
           Start My Assessment
-        </a>
+        </Link>
 
         <button
           onClick={() => setOpen(!open)}
@@ -61,13 +62,13 @@ const Header = () => {
               {l.label}
             </a>
           ))}
-          <a
+          <Link
             href="/assessment"
             onClick={() => setOpen(false)}
             className="inline-flex items-center justify-center h-9 px-5 rounded-md bg-primary text-primary-foreground text-sm font-medium"
           >
             Start My Assessment
-          </a>
+          </Link>
         </div>
       )}
     </header>
