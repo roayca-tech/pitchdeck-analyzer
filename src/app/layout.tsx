@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -14,8 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="bg-gradient" />
-        {children}
+        <TooltipProvider>
+          {children}
+          <Toaster />
+          <Sonner />
+        </TooltipProvider>
       </body>
     </html>
   );
