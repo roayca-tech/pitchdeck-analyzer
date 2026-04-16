@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
                 name: 'Pitch Deck AI Analysis',
                 description: 'Comprehensive AI breakdown and review of your pitch deck',
               },
-              unit_amount: 4900, // $49.00
+              unit_amount: 9995, // $99.95
             },
             quantity: 1,
           },

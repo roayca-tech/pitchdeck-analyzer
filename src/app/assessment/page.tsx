@@ -264,7 +264,7 @@ export default function StartAssessment() {
               disabled={submitting}
               className="flex items-center justify-center gap-2 w-full h-12 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors duration-200 active:scale-[0.97] disabled:opacity-60 disabled:pointer-events-none"
             >
-              {submitting ? "Processing Checkout..." : "Unlock AI Analysis ($49)"}
+              {submitting ? "Processing Checkout..." : "Unlock AI Analysis ($99.95)"}
               {!submitting && <ArrowRight size={16} />}
             </button>
 
