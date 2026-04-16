@@ -87,7 +87,7 @@ async function processDeck(tempFilePath: string, name: string, company: string, 
 
     // 3. AI Analysis
     console.log("Analyzing via OpenAI...");
-    const analysisResponse = await analyzePitchDeckText(extractedText);
+    const analysisResponse = await analyzePitchDeckText(extractedText, company || name);
 
     // 4. Generate PDF Report
     console.log("Generating report PDF...");

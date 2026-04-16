@@ -51,9 +51,9 @@ function SuccessContent() {
     <div className="max-w-md mx-auto p-8 bg-card text-card-foreground shadow-sm rounded-xl border border-border">
       {simulating ? (
         <div>
-          <Loader2 size={64} className="spin" style={{ color: 'var(--accent-color)', margin: '0 auto 2rem' }} />
-          <h2>Processing your payment...</h2>
-          <p style={{ color: 'var(--text-secondary)' }}>Please do not close this window.</p>
+          <Loader2 size={64} className="animate-spin text-primary mx-auto mb-8 drop-shadow-md" />
+          <h2 className="text-xl font-medium text-foreground mb-2">Processing your payment...</h2>
+          <p className="text-muted-foreground">Please do not close this window.</p>
         </div>
       ) : (
         <div>
